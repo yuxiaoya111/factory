@@ -1,0 +1,143 @@
+/**/
+div.list-group-item:first-child{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+div.list-group-item:last-child{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+div.list-group-item{
+    border-left:0px;
+    border-right:0px;
+    margin-bottom: -2px;
+}
+span.glyphicon{
+    cursor: pointer;
+}
+/*通用样式*/
+div.container{
+    margin-top:2em;
+    margin-bottom:2em;
+}
+
+*{
+    font-family:'Microsoft YaHei';
+    font-size:14px;
+}
+img{
+    width:100%;
+}
+.hide{
+    display:none;
+}
+a:hover{
+    cursor:pointer;
+}
+h4{
+    display: inline-block;
+    font-weight:400;
+    font-size:1.14em;
+    color:#333;
+}
+input.loadBtn{
+    background:#ccc;
+    font-size:1em;
+    color:#808080;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .075);;
+}
+input.loadBtn:hover{
+    background:#a6d0f3;
+    font-size:1em;
+    color:#0b5da2;
+}
+
+/*资讯流容器*/
+#flow{
+    max-width:900px;
+    border:1px solid #ddd;
+
+    margin:0 auto;
+
+}
+header{
+    padding:0px 20px;
+    margin-top:7px;
+}
+/*标题*/
+span.sign{
+    padding:0 12px;
+}
+
+/*分类*/
+nav{
+    color:#4d4d4d;
+    padding:8px 20px;
+}
+span.category{
+    margin-right:10px;
+}
+
+div.list-group-item{
+    position:relative;
+    padding-right:20px;
+
+}
+
+#listGroup{
+    margin:10px 0px ;
+}
+div.main_box{
+    background:#eee;
+    padding-bottom: 20px;
+}
+div.bg span{
+    width:4px;
+    height:20px;
+    background:#005faf;
+    display:block;
+    position:relative;
+    left:-15px;
+    top:30px;
+}
+span.topic{
+    margin-left:10px;
+}
+span.topic,span.time {
+    font-size:16px;
+    color:#333;
+
+}
+/*展示一行文字*/
+
+.textone {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 40px;
+    max-height: 40px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+div.textone{
+    font-size:12px;
+}
+#english{
+    display:none;
+}
+/**中文页面**/
+#cn{
+    color:#005faf;
+}
+p.jiaohu{
+    position:absolute;
+    bottom:0;
+    right:5px;
+
+}
+
+/**英文页面**/
+#en{
+    color:#bfbaba;
+}
