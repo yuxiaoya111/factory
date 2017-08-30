@@ -21,7 +21,7 @@
     };
     let target = {"_prop":'foo',"prop":"foo"};
     let proxy = new Proxy(target,handler);
-    console.log('_prop' in proxy);
+    console.log('_prop' in proxy);  //被has（）拦截
     console.log('prop' in proxy);
 
     let stu1 = {name:"张三",score:66};

@@ -6,17 +6,27 @@
 </head>
 <body>
 <script>
-    //1.construct() - 拦截new 命令
+    //1.construct(target,args.nretarget) - 拦截new 命令
+        //target目标对象
+        //args - 构建函数的参数列表
+    //注意：constructor方法返回的必须是对象
+    let p = new Proxy(function(){},{
+        construct(target,args){
+            console.log(`参数是${[...args]}`);
+            return { value:args[0]*2 };
+        }
+    });
+    console.log(new p(1,2));
 
-    //2.deleteProperty() - 拦截delete操作
+    //2.deleteProperty(target,key) - 拦截delete操作
 
     let handler = {
-        deleteProperty:function(target,prop){
-            invarient(prop,'delete');
+        deleteProperty:function(target,key){
+            invarient(key,'delete');
             return true
         }
     };
-    function invarient(prop,action){
+    function invarient(key,action){
         if(prop[0]=="_"){
             throw new Error(`Invalid attemp to ${action} private "${prop}" proverty`);
         }
@@ -27,7 +37,7 @@
     //deleteproperty方法拦截了delete 操作符：删除第一个字符为下划线的属性会报错
     //注意：目标对象自身是不可配置的，即不能操作deleteProperty方法配置，否则会报错
 
-    //3，defineproperty()
+    //3，defineproperty(target,key,descriptor)
     let handler2 = {
         defineProperty (target,prop,descriptoor){
             return false;
@@ -35,9 +45,15 @@
     };
     let target2 = {};
     let proxy2 = new Proxy(target2,handler2);
-    console.log(proxy2.foo = "bar");
+    //console.log(proxy2.foo = "bar"); 会报错
 
-    //proxy的其他方法（周末）
+    //4.getOwnPropertyDescriptor(target,key) - 拦截对象中一个属性的描述对象 - 的返回undefined或一个属性的描述对象
+
+    //5.getprototypeOf(target) - 拦截目标对象的原型
+
+        //Object.prototype._proto_
+        //Object.prototype.isPrototypeOf
+    //其他参见文档
 </script>
 </body>
 </html>

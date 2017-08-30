@@ -11,7 +11,7 @@
     //该返回对象的revoke属性是一个函数，可以取消proxy实例，当执行revoke函数后，在访问proxy实例，就会抛出错误
     let target = {};
     let handler = {};
-    let {proxy,revoke} = Proxy.revocable(target,handler);
+    let { proxy,revoke } = Proxy.revocable(target,handler);
 
     proxy.foo = 123;
     revoke();
