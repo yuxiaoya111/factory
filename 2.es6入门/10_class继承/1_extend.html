@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>extent</title>
+</head>
+<body>
+<script>
+    /*
+    class 通过extends 关键字继承了弗雷德所有属性和方法，并结合super关键字一起使用
+        super  - 代表父类的构造函数，用来新建分父类的this对象
+        重点：使用super的原因 - 子类继承父类，所以子类并没有自己的this对象，而是继承父类的this对象，所以调用super()，是为了获取父类的this对象
+    * */
+    class Point{
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+    }
+    class colorPoint extends Point{
+        constructor(x,y,color){
+            super(x,y);//this对象，必须在super()调用之后
+            this.color = color;
+        }
+    }
+
+</script>
+</body>
+</html>

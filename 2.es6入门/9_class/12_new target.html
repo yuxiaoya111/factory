@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //new target属性(用于构造函数中)，指的是new 关键字后的构造函数
+    function Person(name){
+        if(new.target!==undefined){
+            this.name = name;
+        }else{
+            throw new Error("必须使用new生成实例");
+        }
+    }
+    function Person2(name){
+        if(new.target ==Person2){
+            this.name = name;
+        }else{
+            throw new Error("必须使用new 关键字生成实例对象");
+        }
+    }
+    let person= new Person("张三");
+</script>
+</body>
+</html>

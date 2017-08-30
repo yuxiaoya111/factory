@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //target:所要代理的对象
+    let dateBase = {
+        "name":"xiaoli",
+        "age":12
+    };
+    //hanfler：对代理对象进行拦截的所有操作
+    let handler = {
+        get(target,key,receiver){
+            const date = new Date();
+            console.log(`get ${key} at ${date}`);
+            return Reflect.get(target,key);
+        }
+    };
+    let proxy = new Proxy(dateBase,handler);//创建一个proxy实例，
+    console.log(proxy.name);//通过代理proxy对象进行操作目标对象
+</script>
+</html>

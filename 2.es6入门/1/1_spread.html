@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    'use strict';
+//    console.log(...[1,2,3]);
+//    console.log(1,...[2,3,4],5);
+//    console.log([...document.querySelectorAll("div")]);
+
+//   1. spread（...）运算符常用语函数调用
+    function add(x,y){
+        return x+y;
+    }
+    let numbers = [4,22];
+    console.log(add(...numbers));
+
+
+    console.log(Math.max(...[2,3,4]));
+//    等价于//Math.max.apply(null,[2,3,4])
+
+
+    //应用
+    let  arr2 = [1,22,33];
+    let arr3 = [223.12];
+    let arr4 = [34,21];
+    console.log([...arr2,...arr3,...arr4]);
+</script>
+</body>
+</html>

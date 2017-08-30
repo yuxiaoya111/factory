@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function* F(){
+        this.a = 1;
+        yield this.b = 2;
+        yield this.c = 3;
+    }
+    let obj = {};
+    let f = F.call(obj);
+
+    console.log(f.next());
+    console.log(f.next());
+    console.log(f.next());
+
+    console.log(obj.a);
+    console.log(obj.b);
+    console.log(obj.c);
+</script>
+</html>

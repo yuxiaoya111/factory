@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reset</title>
+</head>
+<body>
+
+</body>
+<script>
+    //作用与spread相反
+    //spread常用于函数的调用语句中
+    //reset一般用于函数参数的申明，意思是把剩余的归合在一起。所以最后一个案例的z没有什么作用
+    function foo(...arr){
+        console.log(arr);
+    }
+    foo(1,2,3,4);
+    foo();
+    foo("a");
+
+
+    function f(x ,...y,z){
+        console.log(x,y,z);
+    }
+    f(1,2,3);//回报错，
+</script>
+</html>

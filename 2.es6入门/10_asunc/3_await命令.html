@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.await命令:await命令后面是一个Promise对象，如果不是，会被立刻转成一个resolve的Promise对象
+    async function f(){
+        return await 123;
+    }
+    f().then((v)=>{console.log(v)});
+
+    //2.await命令后的Promise对象如果变为reject状态，则reject参数会被catch方法的回掉函数接收到。
+    async function ff(){
+        await Promise.reject("出错啦");
+    }
+    ff().then((v)=>{console.log(v)}).
+        catch((error)=>{console.log(error)});
+
+    //3.async函数中，只要一个await语句的Promise对象变为reject,那么整个async函数的都会中断执行
+    async  function fff(){
+        await Promise.reject("出错啦");
+        await Promise.resolve("haha");//不会执行，
+    }
+    ff().then((v)=>{console.log(v)}).
+    catch((error)=>{console.log(error)});
+
+    /
+</script>
+</body>
+</html>

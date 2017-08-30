@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //Class不存在变量提升
+    //class表达式
+    let person = new class{
+        constructor(name){
+            this.name = name;
+        }
+        sayName(){
+            console.log(this.name);
+        }
+    }('张三');
+      person.sayName();
+
+    //class 表达式
+    let Myclass = class Me{
+        getClass(){
+            return Me.name;
+        }
+    }
+    //该类的名称是Myclass,而不是Me,因为Me只能在Class内部使用
+    let inst = new Myclass();
+    console.log(inst.getClass());
+    console.log(Me.getClass());
+</script>
+</html>

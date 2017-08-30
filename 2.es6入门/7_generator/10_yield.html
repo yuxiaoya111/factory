@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let tree = [ 'a', ['b', 'c'], ['d', 'e'] ];
+    function* arrFun(arr){
+        if(Array.isArray(arr)){
+            for(let i=0;i<arr.length;i++){
+                yield* arrFun(arr[i]);
+            }
+        }else{
+            yield arr;
+        }
+    }
+    for(let v of arrFun(tree)){
+        console.log(v);
+    }
+</script>
+</html>

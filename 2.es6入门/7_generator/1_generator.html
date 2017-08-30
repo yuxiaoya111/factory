@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>generator</title>
+</head>
+<body>
+
+</body>
+<script>
+    //案例一
+    function* hellGenerator(){
+        yield 'hello';
+        yield 'world';
+        return 'ending';
+    }
+    let hw = hellGenerator();//调用generator函数并不执行，返回的也不是函数运行结果。而是一个执行内部状态的指针对象（所以Generator函数就是遍历器生成函数）
+
+    console.log(hw.next());
+    console.log(hw.next());
+    console.log(hw.next());
+    console.log(hw.next());
+
+    /*
+    yield 语句就是暂停标志
+    1.yield 语句后面的表达式，只有调用next（）。并且内部指针指向该语句，这句话才执行。
+   2. generator函数不用 yield语句，就变成了一个单纯的暂缓执行的函数
+   3.yield语句只能在Generator函数中使用
+   4.yield语句如果在一个表达式中，必须放在圆括号内
+   5.yield语句用作函数参数或者赋值表达式的右侧，可以不加括号
+    * */
+
+    //案例二
+    function* f(){
+        console.log('执行了！');
+    }
+
+    let gene = f();
+    setTimeout(()=>{
+        gene.next();
+    },1000);
+
+    //案例三
+    let arr = [1,[2,3],4,[5,6]];
+    let flat = function*(a){
+        let length = a.length;
+        for(let i=0;i<length;i++){
+            let item = a[i];
+            if(typeof(item)!=='number'){
+                yield* flat(item);
+            }else{
+                yield item;
+            }
+        }
+    };
+    for(let f of flat(arr)){
+        console.log(f);
+    }
+
+    //方法2：
+    let arr2 = [1,[2,3],4,[5,6]];
+    let
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fill(),keys(),entries().values()</title>
+</head>
+<body>
+
+</body>
+<script>
+    //1.fill()方法
+        //fill()方法使用给定值，填充数组 - 方法：用于空数组/若数组中存在元素，会全部抹去
+    [1,2,3].fill(7); //[7,7,7]
+    let a = new Array(3);
+    a.fill(1);
+    console.log(a);
+        //fill(value,strat.end); - 从start位置到end位置前
+
+    console.log([1,1,1,1,1].fill(7,2,4));
+
+    //2.entries(),keys(),values()
+    /*
+    * for(let [key,value] of array.entries())
+    * for(let key of array.keys())
+    * for(let value of array.value())
+
+    * */
+</script>
+</html>

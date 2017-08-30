@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模块化</title>
+    <!--1.加载es6模块，要使用script标签，并type="module"-->
+    <script type="module" src="module.js"></script>
+    <!--浏览器对于带有type="module"的<script>，都是异步加载-->
+
+
+</head>
+<body>
+
+</body>
+<script type="module" >
+    import {app} from 'module.js';
+    console.log(app());
+</script>
+</html>

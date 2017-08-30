@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //thunk函数的作用(传名调用)就是将参数放入一个临时的函数中。再将这个临时函数传入函数体。临时的函数就叫thunk
+    let thunk = function(){
+        return x+5;
+    };
+    function f(thunk){
+        return thunk()*2
+    }
+    //ecmascript中 thunk替换的不是表达式，而是多参数函数。将其替换成只接受一个回调函数作为参数的单参数函数
+    let thunk2 = function(filename){
+        return function(callback){
+            return fs.readFile(firename,callback);
+        }
+    };
+    let readFile = thunk2(filename);
+    readFile(callback);
+</script>
+</html>

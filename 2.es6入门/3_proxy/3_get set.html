@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用法</title>
+</head>
+<body>
+<script>
+    //设置拦截行为
+    //我们会在对象的内部属性的属性名的第一个字符使用下划线开头，表示这些属性不应该被外部调用
+    let handler = {
+        get:function(target,prop){
+            invariant(prop,'get');
+            return target[prop];
+        },
+        set:function(target,prop,value){
+            invariant(prop,'set');
+            target[prop] = value;
+            return true;
+        }
+    };
+    function invariant(prop,action){
+        if(prop[0] === '_'){
+            throw new Error(`Invalid attempt to ${action} private "${prop}" property`);//不能尝试访问属性内部的协议
+        }
+    }
+     let proxy = new Proxy({},handler);
+
+     console.log(proxy._ppp);//拦截对象的读取
+
+</script>
+</body>
+</html>

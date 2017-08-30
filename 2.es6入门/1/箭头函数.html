@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Allow function </title>
+</head>
+<body>
+<script>
+    function foo(){
+        setTimeout(() => {
+            console.log('args:',arguments);
+            //arguments指向的是函数foo的arguments对象
+            }
+            ,1000);
+    }
+    foo(2,3,4,5);
+
+    //注意：箭头函数
+    /*
+    1.箭头函数根本没有自己的this.所以内部的this就是外层代码块的this（外层调用者）
+    2.不可以当箭头函数是构造函数，也就是说不可以使用new 命令
+    3.不可以使用arguments对象，该对象在函数体内是不存在的。
+    4.不可以使用yield命令，因此箭头函数不能用作Generator函数
+    */
+
+    let arr = [1,2,3];
+    let squares = arr.map(x =>{x*x});
+
+    console.log(squares);
+    //箭头函数的几种写法
+    /*
+    1.无参数
+        () => { }
+    2.有参数(一个参数)
+        x =>{ }
+    3.多个参数
+        (x,y)=>{ }
+
+     //箭头函数函数体
+     x =>{ return x*x };
+     若函数语句只有一句，并且是返回语句可以简写成   x =>x*x;
+
+    */
+
+    //箭头函数优先级是最低的（仅仅比 = 高一点）
+
+    //箭头函数的结构
+
+    console.log( [[1,2],[3,4]].map((a,b) =>a+b));//[3,7]
+
+</script>
+</body>
+</html>

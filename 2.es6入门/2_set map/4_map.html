@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //set()方法添加成员
+    //Map结构类似于Object,也是键值对(hash)的集合，但是Object是“字符串-值的对应”，Map结构是“值-值”的对应
+
+    //1.Map接受数组作为参数,数组成员是一个个 “键值对”的数组
+    let map = new Map([['name','小红'],['title','xiaohan']]);
+    console.log(map.size);
+    console.log(map.has('name'));
+    console.log(map.has('title'));
+    console.log(map.get('name'));
+    //任何具有 Iterator 接口的数据结构（详见《Iterator》一章）都可以当作Map构造函数的参数。这就是说，Set和Map都可以用来生成新的 Map。
+
+    //注意：map的键实际上是跟内存地址绑定的，只要内村地址不一样，就被视为两个键名
+
+    //2.Map结构实例的属性和方法
+     //1.size属性 - 返回Map结构的成员总数
+
+     //2.set(key,value)  --返回当前Map对象
+    //      键名 键值  -如果key已经存在，则键值会被更新。否则就新建一个
+
+    let map2 = new Map().set(1,"a").set("a",111).set(null,345);
+
+    //3.get(key) - 读取key对应的键值，如果key不存在，返回 undefined
+    console.log(map2.get(null));
+    //4.has(key) -返回一个布尔值，表示键值是否存在于当前Map结构中
+    console.log(map2.has("a"));
+    console.log(map2.has("hahah"));
+
+    //5.delete(key) - 删除某个键，成功删除返回true；删除失败返回false;
+
+    //6.clear() - 清楚所有成员，没有返回值
+    map2.clear();
+    console.log(map2.size);
+
+    //3.Map结构原生的遍历 - 同Set结构（注意；map的遍历顺序就是插入顺序）
+    let map3 = new Map().set(1,222).set("string","xiaohong").set(undefined,"好的");
+
+    for(let key of map3.keys()){
+        console.log("键名: "+key);
+    }
+
+    for(let value of map3.values()){
+        console.log("键值: "+value);
+    }
+
+    for(let item of map3.entries()){
+        console.log(item[0],item[1]);
+    }
+    for(let [key,value]of map3){
+        console.log(key,value);
+    }
+    //注意：Map结构有默认的遍历器接口属性Symbol.iterator-    map[Symbol.iterator]===map.entries
+
+
+
+</script>
+</body>
+</html>

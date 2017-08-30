@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let someAsync = function(){
+        return new Promise(function(resolve,reject){
+            resolve(x+2);//出错会被promise.prototype.catch()捕获
+        });
+    };
+    someAsync().then(function(){
+        console.log('success');
+    }).catch(function(){
+        console.log('error la')
+    });
+
+
+</script>
+</html>

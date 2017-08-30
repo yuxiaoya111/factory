@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function* numbers(){
+        yield 1;
+        yield 2;
+        return 4;
+        yield 4;
+    }
+    //扩展运算符 - 遍历器接口（否可以将Generator函数返回的Iterator对象，作为参数）
+    console.log( [...numbers()] );
+
+    //Array.from()方法
+    console.log(Array.from(numbers()));
+
+    //解构
+    let [x,y] = numbers();
+    console.log(x,y);
+</script>
+</body>
+</html>

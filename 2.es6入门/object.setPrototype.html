@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    let breakfast = {
+        drink(){
+            return 'apple'
+        }
+    };
+    let dinner = {
+        drink(){
+            return 'fish'
+        }
+    };
+    //创建一个对象，以breakfast为原型
+    let sunny = Object.create(breakfast);
+    console.log(sunny.drink());
+    console.log(Object.getPrototypeOf(sunny) === breakfast);
+
+    //改变sunny的原型
+    Object.setPrototypeOf(sunny,dinner);
+    console.log(sunny.drink());
+</script>
+
+</body>
+</html>

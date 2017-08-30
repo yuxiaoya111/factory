@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.array.from</title>
+</head>
+<body>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<script>
+    /*
+    * Array.from()方法将两类对象转化成数组
+    *   1.类数组对象（具有length属性）
+    *   2.可遍历的对象（具有iterator接口，【Symbol.iterator】）-set map
+    * 实际运用：类数组对象是DOM操作返回的nodelist集合，以及函数内部的arguments对象
+      *
+    * */
+    let pAll = document.querySelectorAll("p");
+    console.log(Array.from(pAll));
+
+    function arr(){
+        console.log(Array.from(arguments));
+    }
+    arr(1,2,3);
+
+    //扩展运算符也可以转换成数组 - 具有iterator接口
+
+    /**
+     *Array.from还可以接受第二个参数，作用类似于数组的map方法，
+     * 用来对每个元素进行处理，将处理后的值放入返回的数组。
+     * 当有两个参数的时候，第一个参数决定了第二个参数运行的次数
+     *
+     */
+
+    console.log(Array.from({length:2},()=>2));
+    console.log(Array.from({length:3},()=>2));
+    console.log(Array.from({length:4},()=>2));
+</script>
+</body>
+</html>

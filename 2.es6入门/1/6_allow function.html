@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数中的this</title>
+</head>
+<body>
+
+</body>
+<script>
+    let test=()=>{
+        console.log(this.name,this);//obj window  window
+    };
+    window.name="obj window";
+
+    let test2 = {
+        name:"test2 name",
+        fun:()=>{
+            console.log(this.name,this);//obj window window
+        }
+    };
+
+    let test3 = {
+        name : "test3 name",
+        getName:function(){
+            console.log(this.name,this);//test3 name  test3
+        }
+    };
+
+    let xiaoHong = {
+        birth:"1999",
+        getAge:function(){
+            let fn = ()=> new Date().getFullYear()-this.birth;
+            return fn();
+
+        }
+
+    }
+
+</script>
+</html>

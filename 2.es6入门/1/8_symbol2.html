@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>symbol</title>
+</head>
+<body>
+<script>
+//    将symbol作为属性名的三种方式
+    let mySymbol1 = Symbol();
+    let mySymbol2 = Symbol();
+    let a = {
+        [mySymbol1] : "abc"
+    };
+    a[mySymbol2] = "def";
+
+//1.Symbol.toStringTag属性 - 可以自定义对象的类型
+    /*
+    1.typeof 来判断数据类型，只能区分基本数据类型：number string boolean umdefined none
+    2.Object.prototype.toString.call() ,可以精确判断对象的类型
+    */
+//并不是所有的对象返回的都是[object .object],可以自定义类型
+    function faa(){};
+    faa.prototype[Symbol.toStringTag] = "define";//定义在prototype上
+
+    let a1 = new faa();
+     Object.prototype.toString().call(a1);//[object,define];
+
+//2.Symbol.hasInstance属性 -
+    //判断是不是一个家族
+    function family(age){
+        this.age = age;
+    }
+    family[Symbol.hasInstance] = function(){
+        return this.age >=10 && this.age<=100;
+    }
+</script>
+</body>
+</html>

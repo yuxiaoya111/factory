@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //thunk函数自动执行流程管理：步骤
+    /*
+    thunk函数 - 自动执行generator函数
+    * */
+    function* g(){}
+    run(g);
+    function run(fn){
+        let gen = fn();
+        function next(error,data){
+            let result = gen.next(data);
+            if(result.done) return;
+            result.value(data);
+        }
+        next();
+    }
+
+</script>
+</body>
+</html>

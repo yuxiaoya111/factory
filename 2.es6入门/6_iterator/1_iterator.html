@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iterator</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+   iterator遍历过程
+   1.创建一个指针对象，指向当前数据结构的起始位置
+   2.第一次调用指针对象的next方法 ，指针指向数据结构的第一个成员- 返回数据结构当前成员的信息 ：返回一个对象（value done两个属性）
+    value - 表示当前成员的值
+    done- 表示便利是否结束
+   */
+
+
+    //案例模拟ietrator next()方法
+    let it= makeIterator(["a","b"]);
+    function makeIterator(array){
+        let nextIndex = 0;
+        return {
+            next:function(){
+                return nextIndex<array.length?
+                    {value:array[nextIndex++],done:false}:
+                {value:undefined,done:true};
+            }
+        }
+    }
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+</script>
+</html>

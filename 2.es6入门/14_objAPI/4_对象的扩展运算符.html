@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的扩展运算</title>
+</head>
+<body>
+<script>
+
+    //对象的结构赋值会将等号右侧对象中尚未结构的键保存到一个对象中，
+    // 注意1：因此等好友测绝对不能是undefined和null
+    //注意2：对象的解构拷贝也是浅拷贝
+    //注意3：对象结构赋值同样必须是最后一个参数
+    let {x,y,...z} = {x:1,y:1,a:4,f:5};
+    console.log(x);
+    console.log(y);
+    console.log(z);
+
+    let {s,d,...f} = {s:}
+</script>
+</body>
+</html>

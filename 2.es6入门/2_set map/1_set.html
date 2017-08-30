@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set数据结构</title>
+</head>
+<body>
+<script>
+    //1.set的成员都是唯一的，没有重复的值
+    //2.set数据及结构的方法
+    //2.1 set实例的属性
+            /*
+            * set.prototype.constructor - 指向Set结构
+             * set.size - 代表实例的成员
+            * */
+    let s = new Set();
+    //add(value)添加某个值 ; 在set结构内视两个NAN为相同，而两个{}（空对象为不同）
+    s.add(1).add(2).add(3).add(2);
+    console.log(s);
+
+    //delete(value) - 删除某个值，返回布尔值
+    s.delete(2);
+    console.log(s);
+
+    //has(value) - 该值是否是Set的成员;返回布尔值
+    console.log(s.has(1));
+
+    //clear() - 清除所有成员。没有返回值
+    s.clear();
+    console.log(s);
+
+    //3.Array.from set结构转换为数组结构(或利用扩展操作符)
+    let ss = new Set();
+    ss.add(1);
+    let arr1 = Array.from(ss);
+    console.log(arr1);
+
+    //4.Set结构实利的四种遍历方法
+    let sss = new Set(["red","blue","yellow"]);
+    //keys() - 返回键名的遍历器(注意Set结构没有键名，因此返回键值)
+    for(let key of sss.keys()){
+        console.log(key);
+    }
+
+    //values() - 返回键值的遍历器
+    for(let value of sss.values()){
+        console.log(value); }
+
+    //entries()方法 - 返回键值对的遍历器
+    for(let item of sss.entries()){
+        console.log(item);
+    }
+
+    //forEach()方法 - 参数就是一个处理函数
+    //forEach((value,index)=>{})
+</script>
+</body>
+</html>

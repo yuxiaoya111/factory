@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    1.es6提供了一种新的数据类型symbol - 独一无二
+    javascript数据类型：Number String Boolean undefined null object Symbol
+    */
+    let s = Symbol();
+    typeof s;//'symbol'
+
+    let s1 = Symbol("a");//添加参数仅是对Symbol实例的描述
+    let s2 = Symbol("b");
+
+    console.log(s1);
+    console.log(s2);
+
+    const obj = {
+        toString(){
+            return 'abc'
+        }
+    };
+    let sym = Symbol(obj);
+    console.log(sym);
+
+    /*
+    *2.Symbol()值不能与其他数据进行计算
+    **/
+
+</script>
+</body>
+</html>

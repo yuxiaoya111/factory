@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   // has(target,prop) - 拦截HasProperty操作（判断对象是否具有某个属性）  -in运算符
+   //target - 目标对象
+   //prop所要查找的属性名
+   //has拦截的是HasProperty ,而不是HasOwnProperty操作（不判断一个属性是自身的属性，还是集继承的属性）
+    let handler = {
+        has (terget,key){
+            if(key[0] =='_'){
+
+                return false;
+            }
+            return key in target;
+        }
+    };
+    let target = {"_prop":'foo',"prop":"foo"};
+    let proxy = new Proxy(target,handler);
+    console.log('_prop' in proxy);
+    console.log('prop' in proxy);
+
+    let stu1 = {name:"张三",score:66};
+    let stu2 = {name:"张二",score:46};
+    let handler2 = {
+        has(target,prop){
+            if(prop ==="score" &&target[prop]<60){
+                console.log(`${target['name']} 不及格` );
+                return false;
+            }
+            return prop in target;
+        }
+    };
+    let proxy2 = new Proxy(stu1,handler2);
+    let proxy3 = new Proxy(stu2,handler2);
+    console.log('score' in proxy2);
+    console.log('score' in proxy3);
+
+    for(let key in Object.keys(proxy2)){
+        console.log(key);//对for in 不生效
+    }
+</script>
+</body>
+</html>

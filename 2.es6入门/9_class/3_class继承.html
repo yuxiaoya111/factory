@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class继承：extends关键字</title>
+</head>
+<script>
+    class  Point{
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    class ClolrPoint extends Point{
+        constructor(x,y,color){
+            super(x,y);//调用父类Point类的consructor(x,y)
+            this.color = color;//this一定要在super()方法之后使用 - 因为子类没有自己的this对象，而是继承父类的this对象
+        }
+        toSting(){
+            return this.color +' '+ super.toSting();
+        }
+    }
+
+    //每一个对象都有__proto__属性，指向对应的构造函数的prototype属性。
+
+    //（1）子类的__proto__属性，表示构造函数的继承，总是指向父类。
+    //子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性。
+
+    class A{}
+    class B{}
+    //B的实例会继承A的实例
+    Object.setPrototyprof(B.prototype,A.prototype);
+    let b = new B();
+</script>
+<body>
+
+</body>
+</html>

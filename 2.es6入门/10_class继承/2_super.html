@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>super的使用</title>
+</head>
+<body>
+<script>
+    /*
+    * 1.super关键字有两种用法
+    *   1）super() 做函数使用 - 指为引入父类的class , 而其this对象指向子类
+    * */
+    class Point{
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+    }
+    class Apple extends Point{
+        constructor(x,y){
+            super();
+        }
+    }
+</script>
+</body>
+</html>

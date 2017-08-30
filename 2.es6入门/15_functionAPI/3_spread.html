@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>spread</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * 扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。
+    *
+    * */
+    console.log(...new Set().add(1).add(2));
+    //应用1：合并数组 - 替换es5 concat方法
+    let arr = [...[2,4,3],...[2,4,2],...[2,4,2]];
+    console.log(arr);
+    //应用2：与结构赋值结合(扩展运算符在最后一个参数)
+    let [a,...b] = [1,2,3,4,5,3];
+    console.log(a);
+    console.log(b);
+
+    //应用3：针对函数的返回值返回多个
+    //javascript默认返回只能返回一个，如果需要返回多个，只能返回数组或对象
+
+    //应用4：字符串
+    console.log('iama good s ad');
+
+    ///应用4：Map Set generator函数 - 扩展运算符实际上调用的是iterator接口
+    let gen = function*(){
+        yield 2;
+        yield 3;
+        yield 4;
+    };
+    console.log(...gen());
+</script>
+</html>

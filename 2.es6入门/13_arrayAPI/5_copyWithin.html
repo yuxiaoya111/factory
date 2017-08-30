@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组实例的copyWithin</title>
+</head>
+<body>
+
+</body>
+<script>
+    //数组实例的一些API
+    /*1.Array.prototype.copyWithin(target,start,end) - 此方法会直接修改数组
+        target - 必选：从该位置开始替换数据。
+        start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。
+        end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。
+    */
+    let arr = [2,3,5,4,1];
+    let arr1 = arr.copyWithin(2,3);
+    console.log(arr1);//[2,3,4,1,1]
+    console.log(arr1===arr);
+
+a
+</script>
+</html>

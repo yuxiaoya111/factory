@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //在JavaScript中，约定俗成的办法是在属性前面使用下划线 (或者其它的字符) 和/或在其后面来表示它仅能被内部使用。
+    //es6的代理，实现属性真正私有(不能对一个对象的私有属性进行读取和设置)
+    let api = {
+        _key:"123456",
+        getUsers(){},
+        getUser(userid){},
+        setUser(user,id){}
+    };
+    const reste = ["_key"];
+    api = new Proxy(api,{
+        get(target,key,proxy){
+            if(reste.indexOf(key) != -1){
+                //是私有属性
+                throw Error(`${key} is restricted`);
+            }
+            return Reflect.get(target,key,proxy);
+        },
+        set(target,key,value,proxy){
+            if(reste.indexOf(key) != -1){
+                //是私有属性
+                throw Error(`${key} is restricted too`);
+            }
+            return Reflect.set(target,key,value,proxy);
+        }
+    });
+    //console.log(api._key);  Obgect[[get]]
+   // console.log(api._key = "123");  //Object[[set]]
+
+    //es6代理：has同样不能获得
+    let api2 = {
+        _key:"123456",
+        getUsers(){},
+        getUser(userid){},
+        setUser(user,id){}
+    };
+    api2 = new Proxy(api2,{
+        has(target,key){
+            if(reste.indexOf(key) != -1){
+                throw Error(`${key} is restricted too`);
+
+            }else{
+                Reflect.has(target,key);
+                return true;
+            }
+
+        }
+    });
+    console.log("_key" in api2);
+</script>
+</html>

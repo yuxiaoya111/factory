@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+   1. next(参数) - 表示上一个yield语句的返回值
+    * */
+    //比较
+    function* foo(x){
+        let y = 2*(yield (x+1));
+        let z = yield (y/3);
+        return (x+y+z);
+    }
+    let a = foo(5);
+    console.log(a.next());
+    console.log(a.next());
+    console.log(a.next());
+
+    let b = foo(5);
+    console.log(b.next());
+    console.log(b.next(12));
+    console.log(b.next(3));
+
+    /*2.for..of循环可以自动表里Generator函数的Iterator对象（不用调用next方法）
+    注意：一旦next()的返回对象的done属性：true;for..of 循环就会终止
+    */
+    function* f(){
+        yield 1;
+        yield 7;
+        yield 5;
+        yield 4;
+        yield 2;
+        return 6;
+    }
+    for(let v of f()){
+        console.log(v);
+    }
+
+    //案例：实现一个数列【1，1，2，3，5】
+    function* fib(){
+        let [pre,curr] = [0,1];
+        for(;;){
+            [pre,curr] = [curr,curr+pre];
+            yield curr;
+        }
+    }
+    let arr = [1];
+
+    for(let f of fib()){
+        if(f>1000) break;
+        arr.push(f);
+        console.log(arr);
+    }
+
+    //3.原生的javascript对象不能访问内部 - 可以通过Generator函数添加这个属性
+    //案例
+    //1.需要访问的原生js对象
+    let jane = {first:"jane",last:"peter"};
+
+    //2.定义Generator函数
+    function* objectEntries(obj){
+        let propKeys = Reflect.ownKeys(obj);
+        for(let key of propKeys){
+            yield [key,obj[key]];
+        }
+    }
+    for(let [key,value] of objectEntries(jane)){
+        console.log(`${key}:${value}`);
+    }
+    //或者：jane[Symbol.iterator] ()= objectEntries();
+</script>
+</body>
+</html>

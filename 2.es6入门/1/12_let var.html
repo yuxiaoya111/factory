@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.var
+    var a = [];
+    for(var i = 0;i<10;i++){
+        a[i] = function(){
+          console.log(i);
+        };
+    }
+    console.log(a[1]);
+    console.log(a[2]);
+    console.log(a[3]);
+    console.log(a[6]());
+    //结论：变量i是通过var赋值的，var声明的变量只有全局作用域和函数作用域；在这的i在全局范围内都有效，因此全局范围内只用一个变量i;循环内部，循环体内部数组a的function函数，会通过闭包读取到这一个变量。它对应的这个变量i,是最后一轮的i
+
+    let v = [];
+    for(let j = 0;j<10;j++) {
+        v[j] = function () {
+            console.log(j);
+        };
+    }
+        console.log(v[6]());
+        console.log(v[6]);
+
+        //结论：变量j是通过let关键词定义的，let声明的变量有函数作用域，函数作用于还有段落作用域。在循环中j所赋予得得值只在本次循环中有效，下一次循环又是一个新的作用域
+</script>
+</body>
+</html>

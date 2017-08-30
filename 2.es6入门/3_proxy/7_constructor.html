@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.construct() - 拦截new 命令
+
+    //2.deleteProperty() - 拦截delete操作
+
+    let handler = {
+        deleteProperty:function(target,prop){
+            invarient(prop,'delete');
+            return true
+        }
+    };
+    function invarient(prop,action){
+        if(prop[0]=="_"){
+            throw new Error(`Invalid attemp to ${action} private "${prop}" proverty`);
+        }
+    }
+    let target = {_prop:"foo",prop:"foo"};
+    let proxy = new Proxy(target,handler);
+   // console.log(delete proxy._prop);
+    //deleteproperty方法拦截了delete 操作符：删除第一个字符为下划线的属性会报错
+    //注意：目标对象自身是不可配置的，即不能操作deleteProperty方法配置，否则会报错
+
+    //3，defineproperty()
+    let handler2 = {
+        defineProperty (target,prop,descriptoor){
+            return false;
+        }
+    };
+    let target2 = {};
+    let proxy2 = new Proxy(target2,handler2);
+    console.log(proxy2.foo = "bar");
+
+    //proxy的其他方法（周末）
+</script>
+</body>
+</html>

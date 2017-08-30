@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.is()  Object.assign()</title>
+</head>
+<body>
+
+</body>
+<script>
+    /**
+     * Object.is() -判断传入（）内的两个变量是否相等（Same-value equality”（同值相等））
+     * 作用：解决 es5 == 带来的比较相等时数据类型的转换
+     *      解决  es5 === 带来 （+0 ===-0）  （NaN !==NaN)的情况
+     */
+    console.log(Object.is(NaN,NaN));
+    console.log(Object.is({},{}));
+
+    /*
+    * Object.assign(target,source1,source2);
+    * 作用：进行对象的合并 - 将元对象中**所有可枚举的属性**合并到目标对象，若如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。(会改变元对象，而目标对象没有发生任何变化)
+    * */
+    let a = {apple:1};
+    let b = {apple:2,pea:3};
+    let c = {wal:4};
+    Object.assign(a,b,c);
+    console.log(a);
+    console.log(b);
+    console.log(c);
+
+    /*
+    *注意1：如果只有一个参数，Object.assign会直接返回该参数对象。
+    *
+    * */
+    console.log(Object.assign(b)===b);
+
+    /*注意2:如果该参数不是对象，则会先转成对象(包装对象)然后返回。
+    注意:布尔值、数值、字符串分别转成对应的包装对象，可以看到它们的原始值都在包装对象的内部属性[[PrimitiveValue]]上面，这个属性是不会被Object.assign拷贝的。只有字符串的包装对象，会产生可枚举的实义属性，那些属性则会被拷贝。
+    *
+    * */
+    Object(true);//{[[PrimitiveValue]]: true}
+    Object(10);  //  {[[PrimitiveValue]]: 10}
+    Object("abc");//{0:"a",1:"b",3:"c",length:3,[[primitiveValue]]:"abc"}
+    console.log(Object.assign(2));
+
+    /*
+    * 注意3：关于undefined 和 null当作为源对象和目标对象的情况
+    *   1.当作为原对象时，undefined和null无法转换成对象，所以Object.assign(undefined/null,...,...)会报错
+    *   2.当作为目标对象时，首先，这些参数都会转成对象，如果无法转成对象，就会跳过。这意味着，如果undefined和null不在首参数，就不会报错。
+     *
+     */
+
+    /*
+    * 注意4：Object.assign拷贝的属性是有限制的，只拷贝源对象的自身属性（不拷贝继承属性），也不拷贝不可枚举的属性（enumerable: false）。属性名为 Symbol 值的属性，也会被Object.assign拷贝。
+    * */
+
+</script>
+</html>

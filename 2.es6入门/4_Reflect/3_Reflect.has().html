@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.Reflect.has(target,name) - 返回布尔值
+    let obj = {
+        foo:1
+    };
+    //旧写法
+    console.log('foo' in obj );
+    //新写法  - 第一个参数一定是参数
+    console.log(Reflect.has(obj,'foo'));
+
+    //2.Reflect.deleteProperty(target,name) - 等同于delete object[name]
+    //name - key键值（字符串）Property
+    //返回一个布尔值 - 成功删除true
+
+    //3.Reflect.construct(target.args) - new target(...args);  作用：不使用new关键字来调用构造函数的方法
+    function Greeting(name){
+        this.name = name; //添加name属性
+    }
+
+    //旧写法
+    let instance= new Greeting("小红");
+
+    //新写法
+    let instance2 = Reflect.construct(Greeting,["账单"])
+    console.log(instance2);
+
+    //4.Reflect.getPrototypeOf(obj) - 读取对象的_proto_属性
+
+    //旧法：
+    console.log(Object.getPrototypeOf(instance));//Greeting.prototype
+    //新法
+    console.log(Reflect.getPrototypeOf(instance));
+
+    //5.Reflect.setproperty(obj,newPro); - 设置对象的_proto属性，返回第一个对象  等价于Object.setProperty(obj,newPro)
+    //旧写法
+    console.log(Object.setPrototypeOf(instance,newTing.prototype));
+    //新写法
+    console.log(Reflect.setPrototypeOf(inatance,newTing.prototype));
+
+</script>
+</body>
+</html>

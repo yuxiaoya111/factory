@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//call()方法 - 使用一个知道那个的this值和若干个制定的参数值的前提下调用某个函数或方法
+    function Product(name,price) {
+        this.name = name;
+        this.price = price;
+        if (price < 0) {
+            throw RangeError('Cannot create product ' +
+                this.name + ' with a negative price');
+        }
+    }
+    function Food(name,price){
+        Product.call(this,name,price);
+        this.category = 'food';
+    }
+    let b = new Product("小红",1);
+    let c = new Food("小明",11);
+    console.log(c.name);
+    console.log(c.category);
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数：箭头函数</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    箭头函数基本用法 let f = v => v   => let f = function(v){return v}
+    省略了 function return
+    * */
+
+     let arr = [1,2,3];
+     arr.map((x)=>x*x);
+     /*
+     * 箭头函数注意事项：\
+     *      1.  普通函数 this对象是可变的，谁调用了这个函数，this就指那个对象。
+     *          注意：箭头函数的this是固定的，就是定义时所在的对象
+     *      2.  不能使用new 关键字  = 》不能当作构造函数
+     *      3.  不可再参数中使用arguments对象 = 》该对象在箭头函数中不存在，用reset参数代替
+     *      4.  不可以使用yield命令
+     *
+     * */
+
+     function Timer(){
+         this.s1 = 0;
+         this.s2 = 0;
+         //箭头函数
+         setInterval(()=>this.s1++,1000);
+         //普通函数
+         setInterval(function(){
+             this.s2++;
+         },1000);
+     }
+     let timer = new Timer();
+
+     setTimeout(()=>console.log(`s1 :${timer.s1}`),3100);
+     setTimeout(()=>console.log(`s2 :${timer.s2}`),3100);
+     /*
+     * 解析：正时this 再箭头函数和普通函数的区别，普通函数运行时，this指调用这个函数的对象，若没有，则只带window,所以3s后，timer.s2没有更新
+     *                                            箭头函数，this指函数定义时的对象，就是timer本身，所以timer.s1更新了3次
+     *
+     * */
+</script>
+</html>

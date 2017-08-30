@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*遍历器对象的throw方法
+    * throw(参数) - 参数会被catch语句接收
+    * */
+
+    function* g(){
+        try{
+            yield;
+        }catch(error){
+            console.log("内部捕获",error);
+        }
+    }
+    let i = g();
+    i.next();
+
+    try{
+        i.throw("a");//首先被遍历器对象的catch()方法捕获
+        i.throw("b");//遍历器的catch()方法已捕获，就被外部的catc和（）方法补货
+    }catch(error){
+        console.log("外部抛出",error);
+    }
+
+    //案例二
+    function* foo(){
+        try{
+            yield;
+        }catch(error){
+            console.log(`内部捕获 ${error}`);
+        }
+    }
+    let m = foo();
+    m.next();
+    m.throw(new Error("出错了？"));
+    /*注意：上述代码的错误使用遍历器对象的throw方法抛出的，而不是用throw命令抛出，后者只能被函数体外的catch语句捕获*/
+
+
+    //案例三 throw 命令
+    try{
+        throw new Error("a");
+        throw new Error("b");
+    }catch(e){
+        console.log("外部捕获",e);
+    }
+
+    //案例四
+    /*如果Generator函数内部没有部署try...catch代码块，那么throw方法抛出的错误，将被外部try...catch代码块捕获。*/
+    function* f(){
+        while(true){
+            yield;
+            console.log("内部抛出",e);
+
+        }
+    }
+    let n = f();
+    try{
+        n.next();
+        n.throw(new Error('a'));
+    }catch(e){
+        console.log("外部抛出",e);
+    }
+
+    //案例五：
+    //throw方法被捕获以后，会附带执行下一条yield语句。也就是说，会附带执行一次next方法。
+    function* gen(){
+        try{
+            yield console.log('a');
+        }catch(e){
+
+        }
+        yield console.log("b");
+        yield console.log("c");
+    }
+    let k = gen();
+    k.next();//a
+    k.throw();//b
+    k.next();
+
+</script>
+</body>
+</html>

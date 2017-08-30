@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>weakSet和set</title>
+</head>
+<body>
+    <script>
+        //WeakSet结构   - 也是不重复值得集合
+        //1.WeakSet成员 - 只能是对象
+        //2.Weakset结构不能遍历（成员都是弱引用的，随时可能消失）- 所以没有size属性
+        let a = [[1,2],[3,4]];
+        let ws = new WeakSet(a);
+        console.log(ws);//数组a的成员会自动成为WeakSet的成员，而不是a数组本身
+
+        //3.WeakSet结构的方法
+        //WeakSet.prototype.add(value)：向 WeakSet 实例添加一个新成员。
+       // WeakSet.prototype.delete(value)：清除 WeakSet 实例的指定成员。
+       // WeakSet.prototype.has(value)：返回一个布尔值，表示某个值是否在 WeakSet 实例之中。
+    </script>
+</body>
+</html>

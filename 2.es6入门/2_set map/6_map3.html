@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>与其他数据结构互相转换</title>
+</head>
+<body>
+<script>
+    //1.Map结构转数组 - 扩展运算符
+    let map = new Map().
+        set(1,111).
+        set({foo:3},['qqq']);
+    console.log([...map]);
+
+    //2.数组结构转为Map - 将数组放入Map的构造函数参数传入
+    let arr=[[1,111],[{foo:3},['qqq']]];
+    let map2 = new Map(arr);
+
+    //3.Map结构转为对象-条件（如果Map实例的键名都是字符串，即可转为对象）
+    function mapToString(map){
+        let obj = new Object();
+        for(let [k,v] of map){
+            obj[k] = v;
+        }
+        return obj;
+    }
+    console.log(mapToString(map));
+
+    //4.对象转为Map结构
+    function objToMap(obj){
+        let map =new Map();
+        //对象本身没有迭代器接口
+        for(let k of Object.keys(obj)){
+            map.set(k,obj[k]);
+        }
+        return map;
+    }
+    console.log(objToMap({yes:111,no:222}));
+
+    //5.map转为json
+    //6.json转map
+</script>
+</body>
+</html>

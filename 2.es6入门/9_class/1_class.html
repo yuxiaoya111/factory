@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>constructor</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * 重点：class 默认严格模式
+    * 1.Point类的所有方法都是定义在Point.prototype 上
+    *       constructor相当于构造函数
+    *   类中的方法不用在书写function 关键字，直接定义就可以
+    *   类的数据类型本质上是函数
+    *
+    *   定义一个类，后续添加方法  -
+    *   Object.assign(Point.prototype,{
+    *       方法1（）{}，
+    *       方法2（）{}
+    *   })
+    * */
+    class Point {
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+        toSting(){
+            return '('+this.x+','+this.y+')';
+        }
+    }
+    //2.必须通过new命令生成对象实例时，自动调用constructor方法（this对象，只实例对象） - 该方法默认返回实例对象
+    //3.类与函数最大的不同，不存在变量提升
+    let point= new Point(2,3);
+
+    console.log(point);
+    console.log(point.toSting());
+
+    point.hasOwnProperty("x");//自身属性
+    point.hasOwnProperty("y");//true
+    point.hasOwnProperty("toString");//false
+    point.__proto__.hasOwnProperty("toString");//true
+
+</script>
+</html>

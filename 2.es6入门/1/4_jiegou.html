@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解构</title>
+</head>
+<body>
+<script>
+    //1.对象的解构赋值操作
+    let obj = {first: "jane", last: "peter"};
+    let {first: t, last: g} = obj;
+    console.trace(t + ":" + g);
+
+
+    let o = {a: 1, b: 2, c: 3}, a, b, c, p;
+    p = {c} = {a, b} = o;
+    console.log(a + " " + b + " " + c);
+    console.log(p == o);
+    /*1.解构不会影响变量连续赋值
+     2.
+     */
+
+
+    //2，函数的解构赋值 -传递参数 数组形式或者对象形式
+    function f({x = 10} = {}, {y} = {y: 10}) {
+        console.log(x + ": " + y);
+    }
+
+    f();//默认值
+
+    f(20, 20);//对于参数的解构赋值，若新值未达成结构，则保留默认值
+
+    f({}, undefined);//默认
+    f({}, {});//对于{x=10}右侧赋值为默认。而{y}={y:10}变成{y}={};
+    f({}, undefined);
+    f({x: 1}, {y: 3});//传递参数
+
+
+    //案例4：for of迭代核结构
+    let people = [{
+        name: "cyndi",
+    family:{
+        mother: "yeyufen",
+        father: "yujianan "
+    },
+        age: 23
+    },
+    {
+        name: "jiyu",
+        family:{
+            mother: "xiaohong",
+            father: "xiaoli"
+        },
+        age: 24
+    }
+    ]
+    ;
+
+    for(let {name,family:{father},age } of people){
+        console.log(name+":"+father+":"+age);
+    }
+
+
+    //案例4：函数与结构
+    let user = {
+        id :30,
+        name:"jode",
+        fullName:{
+            firstName:"dana",
+            lastName:"out"
+    }
+
+    };
+    function pull({name:name,fullName:{lastName:name}}){
+        console.log(name+"-"+lastName);
+    }
+    pull(user);
+</script>
+</body>
+</html>

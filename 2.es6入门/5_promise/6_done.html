@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    * 1.promiseAPI
+    *  1)done方法：
+    *       作用：对于Promise对象链，不论是then()或者是catch()结尾，要是最后一个方法跑出错，都有可能无法捕捉到。（因为promise内部的错误不会冒泡到全局），因此done方法处于promise 对象链的结尾，保证抛出任何可能的错误
+    * */
+    //1，promise的应用
+    /*
+    * 1）加载图片
+        图片加载写成一个promise函数
+    * */
+    let preloadImg = function(path){
+        return new Promise(function(resolve,reject){
+            let img = new Image();
+            img.onload = resolve;
+            img.onerror = reject;
+            img.src=path;
+        });
+    };
+</script>
+</body>
+</html>

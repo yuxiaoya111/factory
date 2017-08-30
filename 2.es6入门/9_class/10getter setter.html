@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //class内部的存值函数和取值函数，也就是相当对象属性的拦截函数
+    class MyClass{
+        constructor(){
+
+        }
+        get prop(){
+            return 'getter';
+        }
+        set prop(value){
+            console.log('setter'+value);
+        }
+    }
+    let inst = new MyClass();
+    console.log(inst.prop = 123);//设置函数
+    console.log(inst.prop);//读取函数
+</script>
+</html>

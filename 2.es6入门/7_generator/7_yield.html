@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>yield*</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*用来在一个 Generator 函数里面执行另一个 Generator 函数。*/
+    function* foo(){
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+
+    function* bar(){
+        yield 4;
+        yield 5;
+        yield* foo();
+        yield 6;
+        return 4;
+    }
+    let c = bar();
+    for(let v of bar()){
+        console.log(v);
+    }
+
+    //
+    function* foo1(){
+        yield 2;
+        yield 3;
+        return "foo";//return语句向函数bar 提供了返回值
+    }
+
+    function* bar(){
+        yield 1;
+        var v = yield* foo1();
+        console.log("v:"+v);
+        yield 4;
+    }
+    let it  = bar();
+
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+    console.log(it.next());
+
+    /*yield*命令可以很方便地取出嵌套数组的所有成员（方法1）。*/
+    let arr = [1,[2,3],4,6,5];
+    function* arrFun(arr){
+        if(Array.isArray(arr)){
+           for(let i = 0;i<arr.length;i++){
+               yield* arrFun(arr[i]);
+           }
+        }else{
+            yield arr;
+        }
+    }
+    for(let v of arrFun(arr)){
+        console.log(v);
+    }
+    let brr = [1,[2,3],4,6,5];
+    function* brrFun(brr){
+        for(let i =0;i<brr.length;i++){
+            let item = brr[i];
+            if( typeof(item)!== 'number' ){
+               yield* brrFun(item);//如果不加*，返回的是一个遍历器独像，加*号，相当于执行遍历器循环
+
+                continue;
+            }
+            yield item;
+        }
+    }
+    for(let v of brrFun(brr)){
+        console.log(v);
+    }
+</script>
+</html>

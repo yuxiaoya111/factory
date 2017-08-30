@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    //Promise.prototype.catch() -等效于.then(null,rejiection) - 发生错误时的回掉函数（并返回一个新的promise对象）
+   let promise = new Promise(function(resolve,reject){
+       throw new Error('test');
+   });
+   //promise实例的状态变为rejected - 触发catch对象的回掉函数
+    //promise.prototype.then() - 为Promise实例添加状态改变时的回掉函数，该方法返回一个新的Promise实例
+    promise.then(function(data){
+        console.log(good);
+    }).catch(function(error){
+        console.log(error);
+    });
+
+    //注意：Promise 在resolve 语句后面，再抛出错误，不会被捕获。等于被抛出- 原因：因为promise实例的状态一旦该bain，就会永远保持该状态不会发生变化
+
+    let someAsyn = function(){
+        return new Promise(function(resolve,reject){
+            resolve(x+2);
+        });
+    };
+    someAsyn().then(function(){
+        console.log('success');
+    });
+    //果没有使用catch方法指定错误处理的回调函数，Promise对象抛出的错误不会传递到外层代码，即不会有任何反应。(注意，Chrome浏览器不遵守这条规定，它会抛出错误“ReferenceError: x is not defined”。)
+</script>
+</html>

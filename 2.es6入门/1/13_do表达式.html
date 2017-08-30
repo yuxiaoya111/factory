@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>do表达式</title>
+</head>
+<body>
+<script>
+    //实际上 - 块级作用于是一个语句，将多个操作封装在一起，并没有返回值 - 要让块级作用域有返回值，加上do
+    let x = do {
+        let t = f();
+        t*t +1;
+    };
+    console.log(x);
+</script>
+</body>
+</html>

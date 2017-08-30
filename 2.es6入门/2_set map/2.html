@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>set</title>
+</head>
+<body>
+<script>
+    //Set实现并集和交集和差集(set（）可以使用数组的map()方法和has()方法)
+    let a = new Set([1,2,3]);
+    let b = new Set([2,3,4]);
+    console.log([...a]);
+    //并集
+    let union = new Set([...a,...b]);
+    console.log(union);
+    //交集
+    let intersect = new Set([...a].filter(x =>b.has(x)));
+    //filter(callback)- filter方法是指定测试函数对每个元素进行测试，并创建一个包含所有通过测试的元素的新数组。
+    console.log(intersect);
+    //差集
+    let difference = new Set([...a].filter(x => !b.has(x)));
+    console.log(difference);
+</script>
+</body>
+</html>

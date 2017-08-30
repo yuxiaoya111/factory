@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>generator</title>
+</head>
+<body>
+
+</body>
+<script>
+    //Generator 与iterator
+    let obj = {};
+    obj[Symbol.iterator] = function*(){
+        yield 1;
+        yield 2;
+        yield 3;
+    };
+    //作用：Generator函数赋值给Symbol.iterator属性，从而使obj具有Iterator接口
+    console.log([...obj]);//[1,2,3]
+
+    //2.
+    function* gen(){
+
+    }//Generator函数（遍历器生成对象）
+    let g = gen();//遍历器对象（）
+    console.log(g[Symbol.iterator]() ===g);//遍历器对象本身就具有[Symbol.iterator属性]，而该属性对应的是遍历器生成函数，调用该属性就生成遍历器对象等于其本身
+</script>
+</html>

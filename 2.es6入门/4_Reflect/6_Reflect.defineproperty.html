@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Reflect.defineProperty(target,propertyKey,attributes)  --用来定义目标对象target 的属性（propertykey） 值为attributes
+    //写法
+    function MyDate(){
+
+    }
+    //定义Mydate()\
+    //旧写法
+    Object.defineProperty(Mydate,'now',{
+        value:()=>Date.now()
+    });
+    //新写法
+    Reflect.defineProperty(myDate,'now',{
+        value:()=>{Date.now();}
+    })
+</script>
+</body>
+</html>

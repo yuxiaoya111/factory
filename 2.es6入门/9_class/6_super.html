@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>super关键字</title>
+</head>
+<body>
+
+</body>
+<script>
+    //super：1.当函数使用  2.当对象使用
+
+    //1.函数使用 - 代表父类的构造函数
+    class A{
+        constructor(){
+            console.log(new.target.name);
+        }
+    }
+    class B extends A{
+        constructor(){
+            super();//ES6 要求，子类的构造函数必须执行一次super函数。  -返回的是子类的实例  - super()内部的this指向的是b
+        }
+    }
+
+    console.log(new A());
+    console.log(new B());
+
+
+    //2.super() - 作为对象时 - 指向父类的原型对象，所以定义在父类实例上的方法或属性，是无法通过super调用的。
+
+    class C{
+        p(){
+            return 2;
+        }
+
+    }
+    class D extends C{
+        constructor(){
+            //super只能存在与子类的构造方法中，用在其他地方会报错
+            super();
+            console.log(super.p());//super.p() == C.prototype.p()
+        }
+    }
+    let d = new D();
+
+    //3.super()调用父类方法，super会绑定到子类的this
+    class f{
+        constructor(){
+            this.x = 1;
+        }
+    }
+    class cc extends A{
+        constructor(){
+            super();
+            this.x = 2;
+            super.x = 3;//相当于 this.x
+            console.log(super.x);//super.x = A.prototype.x;
+            console.log(this.x);
+        }
+    }
+
+    let ccc = new cc();
+</script>
+</html>

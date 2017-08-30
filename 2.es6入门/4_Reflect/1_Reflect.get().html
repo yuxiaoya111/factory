@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //1.Reflect.get(target,name,receiver) - 查找并返回target对象的那么属性。没有返回undefined
+    /*
+        target - 是目标对象，如果第一个参数不是target，会报错
+        name  - 需要获取值得键值
+        receiver - 如果遇到了getter,读取函数的this 绑定到receiver
+    */
+    let myObject = {
+        foo: 1,
+        bar: 2,
+        get baz(){
+            return this.foo+this.bar;
+         }
+    };
+    let myReceiverObject = {
+        foo:4,
+        bar:4
+    };
+    console.log(Reflect.get(myObject,'foo'));
+    console.log(Reflect.get(myObject,'baz',myReceiverObject));
+
+    //2.Reflect.set(target,name,value[，receiver])- 在一个对向上设置一个属性- 作用是修改target对象的name属性的值
+    let myObject2 = {
+        foo:1,
+        set bar(value){
+            return this.foo =value;
+        }
+    };
+    console.log(myObject2.foo);
+
+    Reflect.set(myObject2,'foo',4);
+    console.log(myObject2.foo);
+
+    Reflect.set(myObject2,'foo',22);
+    console.log(myObject2.foo);
+
+    Reflect.set(myObject2,'foo',33,myReceiverObject);
+    console.log(myObject2.foo);
+    console.log(myReceiverObject.foo);
+
+</script>
+
+</body>
+</html>

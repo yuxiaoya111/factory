@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>默认参数</title>
+</head>
+<body>
+<script>
+    function foo(x=y+2,z=10){
+        console.log(x+":"+z);
+    }
+    var y=2;
+
+
+    foo();
+    foo(1,2);
+    //1.默认值可以访问外层局部作用域变量
+    //2.默认值可以调用函数的返回结果
+    //3.参数默认值，从左向右计算
+</script>
+
+
+</body>
+</html>

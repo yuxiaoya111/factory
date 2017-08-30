@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rest(...变量名)</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*ES6 引入 rest 参数（形式为...变量名）,rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
+    作用：用于获取函数的多余参数，这样就不需要使用arguments对象了。
+
+    注意:reset 参数之后不能再有其他参数（即只能是最后一个参数），否则会报错。
+        函数的length属性也不包括rest
+
+     */
+    function pushValue(arr,...items){
+        items.forEach(function(item){
+            arr.push(item);
+        });
+        return arr;
+    }
+    console.log(pushValue([],2,3,4,56,67));
+</script>
+</html>

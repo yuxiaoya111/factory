@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    //1.字符串的iterator
+    let something ="hi";
+    let iter = something[Symbol.iterator]();
+    console.log(iter.next());
+    console.log(iter.next());
+    console.log(iter.next());
+
+    //2.iterator 与generator
+    let myIterator = {};
+    myIterator[Symbol.iterator] = function*(){
+        yield 1;
+        yield 2;
+        yield 3;
+    };
+    [...myIterator];//[1,2,3]
+
+    //3.修改遍历器的行为
+    let str = "hi";
+    str[Symbol.iterator] = function(){
+        return {
+            next:function(){
+                if(this._first){
+                    this._first = false;
+                    return{value:"bye",done:false};
+                }else{
+                    return {done:true};
+                }
+
+            },
+            _first:true
+        }
+    };
+    [...str];//["bye"]
+    str;//"hi"
+</script>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map</title>
+</head>
+<body>
+<script>
+    //1.Map（）结构转数组
+    //方法1：【...】扩展符
+    let map = new Map([[1,"one"],[2,"two"],[3,"three"]]);
+    console.log([...map.keys()]);
+    console.log([...map.values()]);
+    console.log([...map.entries()]);
+    console.log([...map]);
+
+    //Map的便利和过滤(Map结构本身没有map()和filter()方法。这两个方法是数组的)
+    let map2 = new Map().
+        set(1,"a").
+        set(2,"b").
+        set(3,"c");
+
+    let map3 = new Map(
+        [...map2].filter(([k1, v1]) => k1 < 3)
+    );
+    console.log(map3);
+
+    let map4 = new Map(
+        [...map2].map(([k,v]) => [k * 2,'_'+ v +'_'])
+    );
+    console.log(map4);
+</script>
+</body>
+</html>

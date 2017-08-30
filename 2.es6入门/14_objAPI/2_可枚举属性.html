@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * 对象的每个属性都有一个描述对象（Descriptor）
+    * 作用：用来控制该属性的行为。Object.getOwnPropertyDescriptor（）可以获取该属性的描述对象。
+    * */
+    let obj = {
+        name:"yuhahahha",
+    };
+    let descrip = Object.getOwnPropertyDescriptor(obj,'name');
+    console.log(descrip);
+    //Object {value: "yuhahahha", writable: true, enumerable: true, configurable: true}
+    //描述对象的enumerable属性，称为”可枚举性“，如果该属性为false，就表示某些操作会忽略当前属性。
+
+    /*
+     ES5有三个操作会忽略enumerable为false的属性。
+        for...in循环：只遍历对象自身的和继承的可枚举的属性
+        Object.keys()：返回对象自身的所有可枚举的属性的键名
+        JSON.stringify()：只串行化对象自身的可枚举的属性
+
+     ES6新增了一个操作Object.assign()，会忽略enumerable为false的属性，只拷贝对象自身的可枚举的属性。
+    * */
+</script>
+</html>

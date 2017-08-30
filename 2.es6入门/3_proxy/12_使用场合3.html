@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //4.提供警告信息或者阻止特定操作的执行
+    //功能：1）假设你想要阻止任何人删除属性 noDelete, 2）想要让那些调用 oldMethod（） 的用户知道它已经被弃用了, 3）还想要阻止任何人修改 doNotChange 属性。
+    let dataStore = {
+        noDelete :1235,
+        oldMethod:function(){},
+        doNotChange:"thread and true"
+    };
+    //将三个属性放入三个常量
+    const NODELETE = ['noDelete'];
+    const OLDMETHOD = ['oldMethod'];
+    const DONOTCHANGE = ['doNotChange'];
+    dataStore = new Proxy(dataStore,{
+         set(target,key,value,proxy){
+             //拦截设置
+             if(DONOTCHANGE.includes(key)){
+                 throw new Error(`${key} is not change`);
+             }
+             return Reflect.set(target,key,value,proxy);
+         },
+        deleteproperty(target,key){
+             //拦截删除
+             if(NODELETE.includes(key)){
+                 throw new Error(`${key} can not delete`);
+            }
+            return Reflect.deleteProperty(target,key);
+        },
+        get(target,key,proxy){
+            //拦截读取
+            if(OLDMETHOD.includes(key)){
+                throw new Error(`${key} has old`);
+            }
+            //若属性是方法
+            let val  = target[key];
+            return (typeof val =='function')?function(...args){
+                Reflect.apply(target[key],target,args);
+            }:val;
+
+        }
+    });
+    dataStore.doNoChange = "foo";
+</script>
+</body>
+</html>

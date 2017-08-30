@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let p = Promise.reject('error');
+    p.then().catch(function(error){
+        console.log(error);
+    });
+    //1.Promise.reject() - 返回一个新的Promise实例，该实例的状态为reject
+    let thenable = {
+        then(resolve,reject){
+            reject('出错了');
+        }
+    };
+    Promise.reject(thenable).then(null,function(error){
+        console.log(error === thenable);
+    })
+    //2.Promise.reject()方法的参数，会原封不动地作为reject的理由，变成后续方法的参数。
+</script>
+</body>
+</html>

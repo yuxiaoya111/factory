@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>symbol</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    1.symbol - 一种新的原始类型，表示独一无二的值，所以不能使用new 命令（因为new 正对是对象）
+    */
+//1.Symbol()函数
+   let s1 = Symbol();
+   let s2 = Symbol();
+  console.log( s1 === s2 );//false;
+
+    let s3 = Symbol("abc");//表示duiSymbol函数的实例化
+    let s4 = Symbol("abc");//
+
+    console.log(s3 === s4);//false;
+
+    //注意2：Symbol值不能与其他类型的值进行计算
+//2.属性名Symbol
+    let a = {};
+    let symbol=Symbol();
+    a[symbol] = "hello";//写法1
+
+    //注意2;Symbol值作为对象属性名时，不能用点运算符
+    let b={};
+    let name = Symbol();
+    b.name = "xiaohong";
+    b[name] = "xiaoming";
+    console.log(b);
+    //
+
+//3.Symbol.for()
+//    Symbol.for("key") - 作用首先会在全局中寻找有无以这个key值讯在的symbol,有则返回这个Symbol.没有则创建一个新的symbol
+    let a1 = Symbol.for("at");//创建symbol
+
+    let b1 = Symbol.for("at");//搜索以at为键值的symbol
+    console.log(a1===b1);
+
+
+//4.symbol.keyFor()
+    //该方法是寻找symbol注册表中与该symbol对应的键值
+    let a2 = Symbol("a"); //创建了一个symbol,但未放入sumbol注册表中
+    let  a3 = Symbol.for("b");//创建了一个symbol,并放入symbol注册表，键值key为b
+
+    console.log(Symbol.keyFor(a2));//undefined
+    cons
+    //valueOf
+console.log(Symbol.keyFor(a3));//b
+    //5.
+</script>
+</html>

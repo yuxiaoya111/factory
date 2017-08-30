@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //async 函数返回一个Promise对象。then()方法添加回掉函数
+    //generator函数返回一个iterator对象
+
+    function timeout(ms){
+        return new Promise((resolve,reject)=>{
+            setTimeout(resolve,ms);
+        });
+    }
+    async function asyncPring(value,ms){
+        await timeout(ms);
+        console.log(value);
+    }
+    asyncPring('helloworld',50);
+</script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //Es6原生 提供Proxy 构造函数。用来实现Proxy实例
+    /*
+    let proxy =new Proxy(target,handler);
+        new Proxy 表示生成一个Proxy实例
+        target - 表示所要拦截的目标对象
+        handler- 用来定制拦截行为
+
+    */
+
+    //案例1：
+    let peoxy = new Proxy({},{
+        get:function(target,property){
+            return 35;
+        }
+    });
+    console.log(peoxy.name);//必须许针对poexy（proxy实例）
+    console.log(peoxy.time);
+
+    //
+    /*
+     get(target,propKey,receiver)
+    拦截对象属性的读取
+
+    set(target,propKey,value,receiver)
+    拦截独享属性的设置
+
+    has(target,proKey)
+    拦截ProKey in prokey 的操作，返回一个布尔值
+
+    delete
+    */
+
+    //1.get -拦截对象的读取操作 get (target,propryKey)
+    let person = {
+        name:"余晓雅"
+    };
+    let proxy2 = new Proxy(person,{
+        get:function(target,property){
+            if(property in target){
+                return target[property];
+            }else{
+                //抛出错去
+                throw new ReferenceError("Property \"" + property + "\" does not exist.");
+            }
+        }
+    });
+
+    console.log(proxy2.name);
+    //console.log(proxy2.age);
+   // console.log(proxy2.age); //如何没有这个拦截操作，访问对象中不存在的属性就会给返回undefined
+
+    //2.get方法的继承
+    let proxy3 = new Proxy({},{
+        get:function(target,propertyKey,receiver){
+            console.log('Get:'+propertyKey);
+        }
+    });
+    let obj2 =Object.create(proxy3);//proxy3是obj2的原型对象
+    console.log(obj2.name);
+
+    //注意：若一个对象的属性是不可配置（configurable） 和不可写（writable）,该属性不可代理
+    const target = Object.defineProperties({},{
+        foo :{
+            value:12,
+            writable:false,
+            configurable:false
+        }
+    });
+    const handler = {
+        get(target,prokey) {
+            return 'abc';
+        }
+    };
+
+    const proxy = new Proxy(target,handler);
+    console.log(proxy.foo);
+    
+
+
+</script>
+</body>
+</html>

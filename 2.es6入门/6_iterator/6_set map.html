@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let engines = new Set(["Gecko","Trident","Webkit","Webkit"]);
+    for(let e of engines){
+        console.log(e);
+    }
+
+    let es6 = new Map();
+    es6.set("asc",6);
+    es6.set("abc",8);
+    es6.set("ab88",8);
+    es6.set("fasc",8);
+    for(let [key,value] of es6){
+
+        console.log(key+':'+value);
+
+    }
+</script>
+</body>
+</html>

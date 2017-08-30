@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //类的静态方法、类的静态属性、类的实例属性
+    //1.静态方法：
+    /*      通过new 类（），可以创建一个类的实例，实例可以继承类的所有方法
+            但是，如果在类中 ，在方法前加上 static 关键字，实例是无法访问到这个属性的，只能通过类。该方法才能访问到该属性
+    * */
+
+    //2.实例属性
+    /*     类的实例属性，以前是直接卸载constructor()中
+            实际上可以直接用等式直接定义在类中
+    *
+    * */
+    class Point{
+        apple = 12;
+        constructor(){
+            console.log(this.apple);
+        }
+    }
+
+
+
+
+    //静态属性指的是class本身的属性，不是定义在实例对象（this）上的属性
+
+    class MyClass{
+        static myStatic = 42;
+        constructor(){
+            console.log(Myclass.myStatic);
+        }
+    }
+    let f = new Myclass();
+</script>
+</body>
+</html>

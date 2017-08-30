@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>总结for each  for of  for  in</title>
+</head>
+<body>
+<script>
+//    键值key=value;
+    //1.for of
+    /*
+        作用循环遍历对象，是遍历键值对后面的value--遍历数组元素的方法-es6
+    */
+
+    let arr=["xiaoming","xiaohong","xiaolan"];
+    for(let value of arr){
+        console.log(value);
+    };
+
+    /*
+    2.for in
+    作用：循环遍历对啊ing，是是遍历对象的key值（键值对的左侧）
+    */
+    for(let key in arr){
+        console.log(key);
+    }
+
+
+    /*
+    3.for each遍历数组
+    [].foreach(function(value,index,arr){...})
+    */
+    arr.forEach((value,index,arr) => {
+        console.log(value+":"+index);
+    })
+</script>
+</body>
+</html>

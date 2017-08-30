@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //1.抽离校验模块
+    //通过校验，判断设置属性值必须是number
+
+    let numberDate = {
+        count:0,
+        amount:1234,
+        total:14
+    };
+    numberDate = new Proxy(numberDate,{
+        set(target,key,value,proxy){
+            if(typeof(value) !== "number"){
+                throw  Error("properties in numberDate can only be numbers");
+            }
+            return Reflect.set(target,key,value);
+        }
+    });
+    console.log(numberDate.count = 22);
+
+    //console.log(numberDate.count = "foo");
+
+    //2.验证一个属性是否是私有属性
+    class Person {
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+            return createValidator(this,personValidators);
+        }
+    }
+    const bills  = new Person("bill",25);
+    function createValidator(target,validator){
+        return new proxy(target,{
+            _validator:validator,
+            set(target,key,value,proxy){
+                if(target.hasOwnProperty(key)){
+                    let validator = this._validator[key];//将对象的值属性放置在_validator上
+                    if(!!validator(value)){
+                        //如果当中存在这个值，进行赋值
+                        return reflect.set(target,key,value,proxy);
+                    }else{
+                        throw new Error(`Cannot set ${key} to ${value}. Invalid.`);
+                    }
+                }else{
+                    throw Error(`${key} is not a valid property`);
+                }
+
+            }
+        })
+    }
+    console.log()
+</script>
+</html>

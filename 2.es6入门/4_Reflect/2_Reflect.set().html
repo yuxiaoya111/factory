@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let p ={
+        a:"a"
+    };
+    let handler = {
+        set(target,key,value,receiver){
+            console.log('set');
+            Reflect.set(target,key,value,receiver);
+        },
+        defineproperty(target,key){
+            console.log('defineProperty');
+            reflect.defineProperty(target,key);
+        }
+    };
+    let obj = new Proxy(p,handler);
+    console.log(obj.a ='A');//Reflect.set（）会被proxy对象的defineproperty()方法拦截
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //3.set() - 拦截某个属性的赋值操作 set(target,properkey,value)
+    let validator = {
+        set:function(target,prop,value){
+            if(prop==='age'){
+                if(!Number.isInteger(value)){
+                    throw new TypeError("this is not an inteager");
+                }
+                if(value>200){
+                    throw new RangeError("the age seems invalid");
+                }
+            }
+            //对于age以外的属性，直接保存
+            target[prop] = value;
+        }
+    };
+    let person2 = new Proxy({},validator);
+
+    person2.name = "xiaoli"; //自动创建属性-值
+    person2.age=300;//拦截操作在设置age属性时运行拦截
+</script>
+</body>
+</html>
