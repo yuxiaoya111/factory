@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //1.加载图片
+    const preLoadImg = function (path) {
+        return new Promise(function (reslove, reject) {
+            let img = new Image();
+            img.omload = resolve;
+            img.onerror = reject;
+            img.src = path;
+        });
+    }
+    //2.generator与promise
+
+    //3.Promise.try() - 
+    /*
+    实际开发中，经常遇到一种情况：
+        不知道或者不想区分，函数f是同步函数还是异步操作，
+        但是想用 Promise 来处理它。
+        因为这样就可以不管f是否包含异步操作，都用then方法指定下一步流程，用catch方法处理f抛出的错误。*/
+    //案例1；
+    const f = () => (console.log('now'));
+    Promise.resolve().then(f);
+    console.log('next');
+    //next
+    //now(虽然函数f是同步的，但是用promise包装后，就变成异步执行)
+
+    //解决方法
+    //1.async函数
+    const f2 = () => console.log('now2');
+    (async () => f())();
+    console.log('next2');
+    // now
+    // next
+    //2.new Promise() - 使用了立即执行的匿名函数（同步函数立刻执行）
+    const ff = () => (console.log('news'));
+    (
+        () => new Promise(
+            (resolve, reject) => resolve(ff())
+        )
+    )();
+    console.log('nextqqq');
+
+</script>
+
+</html>

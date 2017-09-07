@@ -8,6 +8,18 @@
 
 </body>
 <script>
+    //1.Promise.prototype.then(resolve,reject) - 为Promise实例添加状态改表时的回调函数
+
+    //2.Promise.prototypr.catch() - 用于指定发生错误时的回掉函数 - 推荐使用catch方法处理then()方法的第二个参数
+    /*
+        getJson("/post.json").then(
+            post => ...
+        ).catch(
+            (error) =>(console.log('发生错误',error));
+        ); 
+    */
+
+    //
     let someAsync = function(){
         return new Promise(function(resolve,reject){
             resolve(x+2);//出错会被promise.prototype.catch()捕获

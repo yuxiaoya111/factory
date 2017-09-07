@@ -6,6 +6,9 @@
 </head>
 <body>
 <script>
+
+    //Reflect对象13个静态方法
+
     //1.Reflect.get(target,name,receiver) - 查找并返回target对象的那么属性。没有返回undefined
     /*
         target - 是目标对象，如果第一个参数不是target，会报错
@@ -16,6 +19,8 @@
         foo: 1,
         bar: 2,
         get baz(){
+
+            //name属性部署了读取函数"getter"
             return this.foo+this.bar;
          }
     };
@@ -24,9 +29,10 @@
         bar:4
     };
     console.log(Reflect.get(myObject,'foo'));
-    console.log(Reflect.get(myObject,'baz',myReceiverObject));
+    console.log(Reflect.get(myObject,'baz',myReceiverObject));//baz属性绑定了读取函数，他的this对象或绑定到receiver
 
     //2.Reflect.set(target,name,value[，receiver])- 在一个对向上设置一个属性- 作用是修改target对象的name属性的值
+    //注意：reflect.set会被PRoxy.defineProperty拦截
     let myObject2 = {
         foo:1,
         set bar(value){

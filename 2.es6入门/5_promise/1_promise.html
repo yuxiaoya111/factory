@@ -10,9 +10,10 @@
     promise - 异步编程解决：
     promise 意义：在于then,将原来异步操作的层层嵌套，变为链式操作
             用法：将各个异步操作封装成好多的promise对象，而一个Promise只处理一个异步逻辑
-            注意：promise实例的状态一旦发生变化，就不会再改变
+            注意：promise实例的状态一旦发生变化，就永远保持改状态，就不会再改变
     Promise构造函数只接受一个函数（异步逻辑）作为参数，函数有两个参数（函数）：resolve 和reject- 不用自己部署，由js引擎提供
     */
+    //Promise 新建后就会立即执行
     let promise = new Promise(function(resolve,reject){
         console.log("promise");
         resolve();

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+</head>
+
+<body>
+    <script>
+        let getJson = function (url) {
+            let promise = new Promise(function (resolve, reject) {
+                let client = new XMLHttpRequest(); //创建XMLHTTPRequest对象
+                client.open("GET", url);   //向服务器发送请求
+                client.onreadystatechange = handler;
+
+                function handler() {
+                    if (this.readyState == 4) {
+                        return;
+                    }
+
+                    if (this.status == 200) {
+                        resolve(this.response);
+                    } else {
+                        reject(new Error(this.statusText));
+                    }
+                }
+
+                return promise;
+            });
+
+
+
+
+        };
+
+    </script>
+</body>
+
+</html>
