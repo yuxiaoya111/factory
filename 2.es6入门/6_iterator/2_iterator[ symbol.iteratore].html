@@ -1,62 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>iterator</title>
 </head>
+
 <body>
-<script>
-    //一种数据接口只要部署了Iterator接口，就称该数据结构是“可遍历”。
-    //iterator接口是部署在数据结构的Symbol.iterator属性上[symbol.iterator] - 对应一个遍历器生成函数
-    /*
-    Symbol.iterator属性 - 是一个函数（当前遍历器的生成函数） - 执行这个函数，就会返回一个遍历器对象
-    const obj = {
-        [Symbol.iterator] : funtion(){
-            return {
-            next ;function(){
+    <script>
+        //一种数据接口只要部署了Iterator接口，就称该数据结构是“可遍历”。
+        //iterator接口是部署在数据结构的Symbol.iterator属性上[symbol.iterator] - 对应一个遍历器生成函数
+        /*
+        Symbol.iterator属性 - 是一个函数（当前遍历器的生成函数） - 执行这个函数，就会返回一个遍历器对象 - 能被for..of循环
+        const obj = {
+            [Symbol.iterator] : funtion(){
                 return {
-                    value:
-                    done:
-                     }
+                next :function(){
+                    return {
+                        value:
+                        done:
+                        }
+                    }
                 }
             }
         }
-    }
-    * */
+        * */
 
-    /*
-    ES6中，有三类数据结构基友Iterator接口：数组。Set  Map
-    * */
-    let arr = ["a","b","c"];
-    let set = new Set().add(1).add(2).add(3);
+        /*
+        ES6中，有三类数据结构基友Iterator接口：数组。Set  Map
+        原生部署iterator揭漏的的数据结构：
+            Array
+            Map
+            Set
+            String
+            函数的arguments对象
+            NOdelist对象
+            typedArray
+        * */
+        let arr = ["a", "b", "c"];
+        let set = new Set().add(1).add(2).add(3);
 
-    let iter = arr[Symbol.iterator]();
-    console.log(iter.next());
-    console.log(iter.next());
-    console.log(iter.next());
-    console.log(iter.next());
+        let iter = arr[Symbol.iterator]();
+        console.log(iter.next());
+        console.log(iter.next());
+        console.log(iter.next());
+        console.log(iter.next());
 
-    let iter2 = set[Symbol.iterator]();
-    console.log(iter2.next());
-    console.log(iter2.next());
-    console.log(iter2.next());
-    console.log(iter2.next());
+        let iter2 = set[Symbol.iterator]();
+        console.log(iter2.next());
+        console.log(iter2.next());
+        console.log(iter2.next());
+        console.log(iter2.next());
 
 
-    /*
-    类数组对象(存在数值剑名和length属性) - 引用数组的Symbol.iterator
-    注意：对于普通的对象部署是无效的
-    * */
-    let iterator = {
-        0:"a",
-        1:"b",
-        2:"3",
-        length:3,
-        [Symbol.iterator]:Array.prototype[Symbol.iterator]
-    };
-    for(let value of iterator){
-        console.log(value);
-    }
-</script>
+        /*
+        类数组对象(存在数值剑名和length属性) - 引用数组的Symbol.iterator
+        注意：对于普通的对象部署是无效的
+        * */
+        let iterator = {
+            0: "a",
+            1: "b",
+            2: "3",
+            length: 3,
+            [Symbol.iterator]: Array.prototype[Symbol.iterator]
+        };
+        for (let value of iterator) {
+            console.log(value);
+        }
+
+
+        //exercise
+        class RangeClass {
+            constructor(start,stop) {
+                this.value = start;
+                this.stop = stop;
+            }
+
+            [Symbol.iterator](){return this}
+            next(){
+                let value = this.value;
+                if( value<this.stop ) {
+                    this.value = this.value;
+                    if(value<this.stop) {
+                        this.value++;
+                        return {value:value,done:false}
+                    }
+                    return {value:undefind,done:true}
+                }
+            }
+        }
+        function range(start,stop){
+            return new RangeClass(start,stop);
+        }
+    
+        for(let value of range(0,4)){
+            console.log(value);
+        }
+    </script>
 </body>
+
 </html>

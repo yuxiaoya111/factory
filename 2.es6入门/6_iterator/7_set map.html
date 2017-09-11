@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Set Map：for ...of...</title>
+</head>
+
+<body>
+    <script>
+        //1.Set结构
+        let set = new Set(["hello", "good", "booy"]);
+        for (let value of set) {
+            console.log(value);
+        }
+        for (let key of set) {
+            console.log(key);
+        }
+        //总结：Set结构遍历键值和键名是一样的，其次遍历顺序与其添加进数据结构的顺序有关
+
+        //2.Map结构
+        let map = new Map();
+        map.set("app", 6);
+        map.set("aaa", "zhiq");
+        map.set(1, "good");
+        for (let value of map) {
+            console.log(value);
+        }
+        for (let [key, value] of map) {
+            console.log(key + ':' + value);
+        }
+
+        //总结：Map结构的成员每一个数组，该数组的两个成员分别为当前 Map 成员的键名和键值。
+
+        //3.Set结构 Map结构都部署了entries(),keys(),values()方法
+        /*
+         调用后都返回遍历器对象。
+            entries() 返回一个遍历器对象，用来遍历[键名, 键值]组成的数组。对于数组，键名就是索引值；对于 Set，键名与键值相同。Map 结构的 Iterator 接口，默认就是调用entries方法。
+            keys() 返回一个遍历器对象，用来遍历所有的键名。
+            values() 返回一个遍历器对象，用来遍历所有的键值。
+        */
+    </script>
+</body>
+
+</html>

@@ -6,9 +6,48 @@
 </head>
 <body>
 <script>
+    /*
+    总结：关于iterator接口几个概念问题
+        1：遍历器生成函数  - Symbol.iterator属性 - 执行这个函数生成遍历器对象
+        2.遍历器对象 - {next(){}}    具有next()方法的对象 - for...of..则是执行next()方法
+        3.next() - 返回一个具有value属性 done属性的对象
+    */
     //遍历器对象的return() - 1.for of 循环提前退出，就会调用return() - 该方法必须返回一个对象
 
-    //遍历器对象throw() - 配合generator函数
+    //1.遍历器对象的throw() - 配合generator函数
+
+    //2.遍历器对象的return()方法
+    //使用场合：如果for...of循环提前退出（通常是因为出错，或者有break语句或continue语句），就会调用return方法。如果一个对象在完成遍历前，需要清理或释放资源，就可以部署return方法。
+
+    function readLines(file) {
+        return {
+            next(){
+                return {done:false};
+            },
+            return(){
+                file.close();
+                return {done:true};
+            }
+        }
+    }
+    //以下任意一种都会触发return（）
+    //1.break语句
+    for(let value of readLines(fileName)){
+        console.log(value);
+        break;
+    }
+
+    //2.continue语句
+    for(let value of readLines(fileName)){
+        console.log(value);
+        continue;
+    }
+
+    //3.报错
+    for(let value of readLines(fileName)){
+        console.log(value);
+        throw new Error();
+    }
 </script>
 </body>
 </html>

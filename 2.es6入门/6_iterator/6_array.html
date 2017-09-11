@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数组：for ...of...</title>
+</head>
+
+<body>
+    <script>
+        //1.for of循环调用的是数据结构的Symbol.iterator方法产生的遍历器（进而获得遍历器对象的键值）
+        //案例1：数组
+        const arr = ['red', 'blue', 'green'];
+        for (let value of arr) {
+            console.log(value);
+        }
+
+        const obj = {};
+        obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr);
+        for(let value of obj){
+            console.log(value);
+        }
+
+
+        //案例2：for...of  代替数组的forEach()
+        arr.forEach((element,index)=>{
+            console.log(element);
+            console.log(index);
+        });
+        
+
+        //2.for..in...只能获得遍历器对象的键名，不能获得键值
+        //案例3：
+        for(let key in arr){
+            console.log(key);
+        }
+
+        //
+        arr.foo = 'hello';
+        for(let key in arr){
+            console.log(key);//for..in...会遍历出数组的所有键名
+        }
+        for(let value of arr){
+            console.log(value);//for...of只会便力出键名是数字的键值
+        }
+
+    </script>
+</body>
+
+</html>

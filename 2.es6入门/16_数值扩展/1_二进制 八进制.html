@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>二进制 八进制</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*1.二进制与十进制*/
+    //二进制 0b...
+    console.log(0b111);//1+2+4=7
+    //八进制 0o.., ES5 开始，在严格模式("use strict")之中，八进制就不再允许使用前缀0表示
+
+    console.log(0o11);//1+8=9
+
+    //转为十进制 Number('0b111');
+    console.log(Number('0o10'));//8
+
+    /*2.Number.isFinite() Number.isNaN()*/
+    //Number.isFinite()用来检查一个数值是否为有限的（finite）。
+    console.log(Number.isFinite(42));
+    console.log(Number.isFinite(NaN));
+    //Number.isNaN()用来检查一个值是否为NaN。
+    console.log(Number.isNaN(NaN));
+    console.log(Number.isNaN(33));
+    //Number.isFinite()对于非数值一律返回false, Number.isNaN()只有对于NaN才返回true，非NaN一律返回false。
+
+    /*3.Number.parseInt() Number.parseFloat
+    全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变。
+    */
+    console.log(Number.parseInt('12.55'));
+    console.log(Number.parseFloat('12.333$'));
+
+
+    /*4.Number,isInteger()*
+    用来判断一个值是否为整数。
+    需要注意的是，在 JavaScript 内部，整数和浮点数是同样的储存方法，所以3和3.0被视为同一个值。
+    */
+
+    console.log(Number.isInteger(25));
+    console.log(Number.isInteger(25.0));
+    console.log(Number.isInteger(25.1));
+
+    /*5.Number.EPSILON
+    一个极小的常量Number.EPSILON。（误差小于这个可以）
+    */
+    
+    /*6.Number.isSafeInteger()
+    
+    */
+    //JavaScript能够准确表示的整数范围在-2^53到2^53之间（不含两个端点），超过这个范围，无法精确表示这个值。
+   // Number.MAX_SAFE_INTEGER和Number.MIN_SAFE_INTEGER这两个常量，用来表示这个范围的上下限。
+   Number.MAX_SAFE_INTEGER = Math.pow(2,53)-1
+   Number.MIN_SAFE_INTEGER = Math.pow(2,53)+1
+
+   //Number.isSafeInteger() - 判定一个数是否落在这个范围
+   console.log(Number.isSafeInteger('a'));
+   console.log(Number.isSafeInteger(NaN));
+</script>
+
+</html>

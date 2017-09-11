@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>nodelist对象和普通对象</title>
+</head>
+
+<body>
+    <script>
+       //1.nodeList对象
+       //2.普通对象
+       //for..of循环不能遍历对象，因为并美誉iterator结构，但是for..in可遍历键名
+       //案例1：怎么遍历对象中的属性值
+        /*方法1：Object.keys() - 将对象的键名生成一个数组*/
+        let obj = {
+            edition:6,
+            committe:'TE39',
+            standard:'wwww'
+        };
+        for(let key of Object.keys(obj)){
+            console.log(key+':'+obj[key]);
+        }
+        /*方法2：generator*/
+    </script>
+</body>
+
+</html>
